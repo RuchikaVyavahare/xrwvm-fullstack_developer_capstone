@@ -90,10 +90,7 @@ jobs:
 
       - name: Lint JavaScript code
         run: |
-          jshint \
-            --config false \
-            --exclude-path .gitignore \
-            app.js review.js dealership.js inventory.js
+          jshint app.js review.js dealership.js inventory.js
 
 
           for file in app.js review.js dealership.js inventory.js; do
