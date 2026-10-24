@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import "./Dealers.css";
 import "../assets/style.css";
 import Header from '../Header/Header';
+import PostReview from "./components/Dealers/PostReview"
 
 
 const PostReview = () => {
@@ -116,6 +117,8 @@ const PostReview = () => {
       <div>
       <button className='postreview' onClick={postreview}>Post Review</button>
       </div>
+            <Route path="/postreview/:id" element={<PostReview/>} />
+
     </div>
     </div>
   )
