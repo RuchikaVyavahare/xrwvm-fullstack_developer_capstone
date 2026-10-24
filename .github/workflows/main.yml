@@ -58,6 +58,7 @@ jobs:
             --extend-ignore=W503 \
             --exclude=migrations
 
+ 
   lint_js:
     name: Lint JavaScript Files
     runs-on: ubuntu-latest
@@ -80,10 +81,20 @@ jobs:
 
       - name: Verify JavaScript files
         run: |
-          test -f .jshintrc || {
-            echo "::error::server/database/.jshintrc not found"
-            exit 1
-          }
+          for file in app.js review.js dealership.js inventory.js; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Missing JavaScript file: $file"
+              exit 1
+            fi
+          done
+
+      - name: Lint JavaScript code
+        run: |
+          jshint \
+            --config false \
+            --exclude-path .gitignore \
+            app.js review.js dealership.js inventory.js
+
 
           for file in app.js review.js dealership.js inventory.js; do
             test -f "$file" || {
